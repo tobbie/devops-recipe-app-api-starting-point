@@ -31,6 +31,8 @@ jobs:
                 else
                   echo "staging" > .workspace
                 fi
+                pwd
+                cat .workspace
             
             - name: Push to ECR
               env:
