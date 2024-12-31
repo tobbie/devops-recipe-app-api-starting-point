@@ -12,7 +12,7 @@ jobs:
         uses: ./.github/workflows/test-and-lint.yml
         name: Test and Lint
         secrets:
-            DOCKERHUB_USER: ${{ var.DOCKERHUB_USER }}
+            DOCKERHUB_USER: ${{ vars.DOCKERHUB_USER }}
             DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
 
     
