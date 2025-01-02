@@ -13,3 +13,15 @@ variable "contact" {
   default     = "phosware.cloud@gmail.com"
 }
 
+variable "db_username" {
+  description = "username for recipe app api database"
+  default     = "recipeapp"
+}
+
+
+variable "db_password" {
+  description = "password for recipe app api database"
+
+}
+
+

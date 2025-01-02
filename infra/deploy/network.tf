@@ -119,6 +119,7 @@ resource "aws_subnet" "private_b" {
 # Endoints to allow ECS to access ECR, CloudWatch and Systems Manager #
 #######################################################################
 
+/** comment out to prevent creating endpoints
 resource "aws_security_group" "endpoint_access" {
   description = "Access to endpoints"
   name        = "${local.prefix}-endpoint-access"
@@ -217,3 +218,4 @@ resource "aws_vpc_endpoint" "s3" {
   }
 
 }
+**/
