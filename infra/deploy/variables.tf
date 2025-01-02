@@ -21,7 +21,7 @@ variable "db_username" {
 
 variable "db_password" {
   description = "password for recipe app api database"
-
+  
 }
 
 
