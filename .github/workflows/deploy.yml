@@ -53,8 +53,10 @@ jobs:
                 TF_VAR_django_secret_key: ${{ secrets.TF_VAR_DJANGO_SECRET_KEY }}
 
               run: |
-                export TF_VAR_ecr_app_image="{{ vars.ECR_REPO_APP }}:$GITHUB_SHA"
-                export TF_VAR_ecr_proxy_image="{{ vars.ECR_REPO_PROXY }}:$GITHUB_SHA"
+                export TF_VAR_ecr_app_image="${{ vars.ECR_REPO_APP }}:$GITHUB_SHA"
+                export TF_VAR_ecr_proxy_image="${{ vars.ECR_REPO_PROXY }}:$GITHUB_SHA"
+                echo "app image  is set to: $TF_VAR_ecr_app_image"
+                echo "proxy image is set to: $TF_VAR_ecr_proxy_image"
                 workspace=$(cat .workspace)
                 cd infra/
                 docker compose run --rm terraform -chdir=deploy/ init
