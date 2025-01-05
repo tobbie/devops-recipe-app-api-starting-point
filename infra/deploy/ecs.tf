@@ -57,43 +57,47 @@ resource "aws_ecs_task_definition" "api" {
 
   container_definitions = jsonencode([
     {
-      name = "api"
-      image = var.ecr_app_image
-      essential = true
+      name              = "api"
+      image             = var.ecr_app_image
+      essential         = true
       memoryReservation = 256
-      user = "django-user"
+      user              = "django-user"
 
       environment = [
         {
-          name = "DJANGO_SECRET_KEY"
+          name  = "DJANGO_SECRET_KEY"
           value = var.django_secret_key
         },
-         {
-          name = "DB_HOST"
+        {
+          name  = "DB_HOST"
+          value = aws_db_instance.main.address
+        },
+        {
+          name  = "DB_NAME"
           value = aws_db_instance.main.db_name
         },
 
         {
-          name = "DB_USER"
+          name  = "DB_USER"
           value = aws_db_instance.main.username
         },
 
         {
-          name = "DB_PASS"
+          name  = "DB_PASS"
           value = aws_db_instance.main.password
         },
-        
+
         {
-          name = "ALLOWED_HOSTS"
+          name  = "ALLOWED_HOSTS"
           value = "*"
         }
       ]
 
       mountPoints = [
         {
-          readOnly = false
+          readOnly      = false
           containerPath = "/vol/web/static"
-          sourceVolume = "static"
+          sourceVolume  = "static"
         }
       ]
 
@@ -107,7 +111,7 @@ resource "aws_ecs_task_definition" "api" {
       }
 
     },
-   
+
     {
       name              = "proxy"
       image             = var.ecr_proxy_image
@@ -147,7 +151,7 @@ resource "aws_ecs_task_definition" "api" {
       }
     }
 
-    
+
 
 
 
