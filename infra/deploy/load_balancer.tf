@@ -36,6 +36,7 @@ resource "aws_lb" "api" {
   security_groups    = [aws_security_group.lb.id]
 }
 
+// this is the distribution / outgoing side of our load balancer
 resource "aws_lb_target_group" "api" {
   name        = "${local.prefix}-api"
   protocol    = "HTTP"
@@ -46,5 +47,17 @@ resource "aws_lb_target_group" "api" {
   # ensures load-balancer disributes requests to healthy tasks
   health_check {
     path = "/api/health-check"
+  }
+}
+
+//the listener is the recieving side of the load balancer
+resource "aws_alb_listener" "api" {
+  load_balancer_arn = aws_lb.api.arn
+  port              = 80
+  protocol          = "HTTP"
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.api.arn
   }
 }
