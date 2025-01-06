@@ -46,7 +46,7 @@ resource "aws_lb_target_group" "api" {
 
   # ensures load-balancer disributes requests to healthy tasks
   health_check {
-    path = "/api/health-check"
+    path = "/api/health-check/"
   }
 }
 
