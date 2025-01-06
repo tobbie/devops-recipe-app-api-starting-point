@@ -214,7 +214,7 @@ resource "aws_ecs_service" "api" {
   enable_execute_command = true
 
   network_configuration {
-   
+
     subnets = [
       aws_subnet.private_a,
       aws_subnet.private_b
@@ -225,8 +225,8 @@ resource "aws_ecs_service" "api" {
 
   load_balancer {
     target_group_arn = aws_lb_target_group.api.arn
-    container_name = "proxy"
-    container_port = 8000
+    container_name   = "proxy"
+    container_port   = 8000
   }
 
 }
