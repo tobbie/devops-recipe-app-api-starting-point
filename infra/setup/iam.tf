@@ -142,6 +142,12 @@ data "aws_iam_policy_document" "ec2" {
       "ec2:AttachInternetGateway",
       "ec2:ModifyVpcAttribute",
       "ec2:RevokeSecurityGroupIngress",
+      "ec2:DescribeNetworkInterfaceAttribute", # Added
+      "ec2:CreateNetworkInterface",            # Added
+      "ec2:DescribeNetworkInterfaces",         # Added
+      "ec2:DeleteNetworkInterface",            # Added
+      "ec2:DescribeVpcs",                      # Added
+      "ec2:DescribeSubnets"                    # Added
     ]
     resources = ["*"]
   }
